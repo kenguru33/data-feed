@@ -1,0 +1,13 @@
+{
+  "name": "data-feed",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^23.5.0",
+    "standard": "^11.0.1"
+  }
+}
+
