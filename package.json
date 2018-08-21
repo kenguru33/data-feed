@@ -2,12 +2,15 @@
   "name": "data-feed",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch --verbose --coverage src",
+    "lint": "standard src"
   },
   "dependencies": {},
   "devDependencies": {
     "jest": "^23.5.0",
     "standard": "^11.0.1"
+  },
+  "standard": {
+    "env": [ "jest" ]
   }
 }
-

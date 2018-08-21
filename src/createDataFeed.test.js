@@ -1,4 +1,4 @@
-const createDataFeed = require('../createDataFeed')
+const createDataFeed = require('./createDataFeed')
 
 describe('createDataFeed', () => {
   let feed
@@ -6,7 +6,10 @@ describe('createDataFeed', () => {
   let subscriber
 
   beforeEach(() => {
-    fetch = jest.fn(() => Promise.resolve({data: 'data'}))
+    fetch = jest.fn(() => Promise.resolve([
+      {data1: 'data1'},
+      {data2: 'data2'}
+    ]))
     subscriber = jest.fn(data => {})
     feed = createDataFeed({fetch: fetch, interval: 2000})
   })
@@ -37,7 +40,7 @@ describe('createDataFeed', () => {
   })
   describe('DataFeed', () => {
     test('calling subscribe() throws error if called with an not callable parameter', () => {
-      expect(() => {feed.subscribe()}).toThrow(TypeError('subscriber is not callable'))
+      expect(() => { feed.subscribe() }).toThrow(TypeError('subscriber is not callable'))
     })
     test('calling getSubscribers() returns a array of all subscribers', () => {
       const subscriber = data => {}
@@ -49,10 +52,10 @@ describe('createDataFeed', () => {
     test('start() is called on first registered subscriber only', () => {
       const spy = jest.spyOn(feed, 'start')
       jest.useFakeTimers()
-      feed.subscribe(()=>{})
+      feed.subscribe(() => {})
       jest.runOnlyPendingTimers()
       expect(spy).toHaveBeenCalledTimes(1)
-      feed.subscribe(()=>{})
+      feed.subscribe(() => {})
       jest.runOnlyPendingTimers()
       expect(spy).toHaveBeenCalledTimes(1)
     })
@@ -75,6 +78,15 @@ describe('createDataFeed', () => {
       jest.runOnlyPendingTimers()
       return expect(Promise.resolve(subscriber)).resolves.toHaveBeenCalledTimes(1)
     })
+    test('calling stop() stops interval', () => {
+      jest.useFakeTimers()
+      feed.start()
+      feed.stop()
+      expect(clearInterval).toHaveBeenCalled()
+    })
+    test('getLastPublished returns array of last published data', () => {
+
+    })
     describe('Subscription', () => {
       test('unsubscribe() removes subscription from feed', () => {
         const subscriber = () => {}
@@ -90,12 +102,6 @@ describe('createDataFeed', () => {
         subscription.unsubscribe()
         expect(feed.getSubscribers().length).toBe(0)
         expect(spy).toBeCalled()
-      })
-      test('calling stop() stops interval', () => {
-        jest.useFakeTimers()
-        feed.start()
-        feed.stop()
-        expect(clearInterval).toHaveBeenCalled()
       })
     })
   })
