@@ -1,5 +1,5 @@
 {
-  "name": "data-feed",
+  "name": "@redningsselskapet/data-feed",
   "version": "1.0.0",
   "scripts": {
     "test": "jest --watch --verbose --coverage src",
