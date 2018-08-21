@@ -1,4 +1,4 @@
-#Data Feed
+# Data Feed
 Creates a data feed wich fetches data on interval and publish it to feed subscribers.
 
 ### example code:
