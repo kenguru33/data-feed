@@ -5,6 +5,7 @@
     "test": "jest --watch --verbose --coverage src",
     "lint": "standard src"
   },
+  "main": "src/createDataFeed.js",
   "dependencies": {},
   "devDependencies": {
     "jest": "^23.5.0",
