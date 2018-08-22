@@ -3,7 +3,7 @@ Creates a data feed wich fetches data on interval and publish it to feed subscri
 
 ### example code:
 ```javascript
-const createFeed = require('./createDataFeed')
+const createFeed = require('createDataFeed')
 const axios = require('axios')
 
 // create a fetch function

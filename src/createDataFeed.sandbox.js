@@ -1,5 +1,5 @@
 const createFeed = require('./createDataFeed')
-const marineTraffickMock = {
+const marineTraffickMock = Promise.resolve([{
   MMSI: '257150500',
   IMO: '0',
   SHIP_ID: '304663',
@@ -12,7 +12,7 @@ const marineTraffickMock = {
   TIMESTAMP: '2018-08-20T14:43:46',
   DSRC: 'TER',
   UTC_SECONDS: '47'
-}
+}])
 const fetch = () => {
   return marineTraffickMock
 }

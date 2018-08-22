@@ -84,9 +84,6 @@ describe('createDataFeed', () => {
       feed.stop()
       expect(clearInterval).toHaveBeenCalled()
     })
-    test('getLastPublished returns array of last published data', () => {
-
-    })
     describe('Subscription', () => {
       test('unsubscribe() removes subscription from feed', () => {
         const subscriber = () => {}
